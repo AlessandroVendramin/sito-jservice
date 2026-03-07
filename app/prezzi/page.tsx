@@ -37,7 +37,7 @@ export default function PrezziPage() {
         <div className="container pricing-grid">
           <div className="plan">
             <div className="name">Base</div>
-            <div className="price">da €18/ora</div>
+            <div className="price">da €30/ora</div>
             <div className="note">Pulizia essenziale per piccoli ambienti</div>
             <ul>
               <li>Pavimenti e spolvero superfici</li>
@@ -51,7 +51,7 @@ export default function PrezziPage() {
 
           <div className="plan">
             <div className="name">Standard</div>
-            <div className="price">da €22/ora</div>
+            <div className="price">da €30/ora</div>
             <div className="note">Per case e uffici con necessità regolari</div>
             <ul>
               <li>Tutto del piano Base</li>
