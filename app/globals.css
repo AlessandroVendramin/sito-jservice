@@ -361,13 +361,16 @@ p { margin: 0 0 12px 0; color: var(--text-secondary); }
 .logos {
   margin-top: 18px;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .logo-pill {
-  height: 36px;
-  padding: 0 12px;
-  display: inline-flex;
+  min-height: 36px;
+  padding: 8px 14px;
+  display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--primary-light);
@@ -378,12 +381,14 @@ p { margin: 0 0 12px 0; color: var(--text-secondary); }
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-align: center;
+  word-break: break-word;
 }
 @media (max-width: 900px) {
-  .logos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .logos { grid-template-columns: 1fr; }
 }
 
 /* Secondary CTA */

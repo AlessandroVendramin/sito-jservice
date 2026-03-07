@@ -146,12 +146,10 @@ export default function HomePage() {
         <div className="container">
           <p className="muted line-above">Scelto da hospitality, uffici e property manager moderni.</p>
           <div className="logos">
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Hotel Aurora</div>
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Jesolo Suites</div>
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Venezia Offices</div>
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Laguna Property</div>
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Riviera Gym</div>
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Adriatico Market</div>
+            <div className="logo-pill" aria-label="Logo azienda (mock)">Richard Meier District</div>
+            <div className="logo-pill" aria-label="Logo azienda (mock)">Campeggio Malibù</div>
+            <div className="logo-pill" aria-label="Logo azienda (mock)">Campeggio Waikiki</div>
+            <div className="logo-pill" aria-label="Logo azienda (mock)">Jesolo Turismo</div>
           </div>
         </div>
       </section>
