@@ -1,44 +1,27 @@
 import { MetadataRoute } from 'next';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://jservicejesolo.com';
+const BASE_URL = 'https://jservicejesolo.com';
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/servizi`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/prezzi`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/zone-servite`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/chi-siamo`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/faq`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-  ];
+/** Pagine da includere nella sitemap: path, priorità (0–1), frequenza di aggiornamento */
+const PAGES: Array<{
+  path: string;
+  priority: number;
+  changeFrequency: 'weekly' | 'monthly' | 'yearly';
+}> = [
+  { path: '', priority: 1, changeFrequency: 'weekly' },
+  { path: '/servizi', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/prezzi', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/zone-servite', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/chi-siamo', priority: 0.6, changeFrequency: 'monthly' },
+  { path: '/faq', priority: 0.6, changeFrequency: 'monthly' },
+];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
+  return PAGES.map(({ path, priority, changeFrequency }) => ({
+    url: path ? `${BASE_URL}${path}` : BASE_URL,
+    lastModified: now,
+    changeFrequency,
+    priority,
+  }));
 }

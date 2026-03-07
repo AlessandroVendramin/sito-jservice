@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import Link from 'next/link';
 import { ContactDrawer } from './components/ContactDrawer';
 import { StructuredData } from './components/StructuredData';
+
+const GA_MEASUREMENT_ID = 'G-TFRBS07470';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
 
@@ -59,8 +62,8 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  icons: { 
-    icon: '/favicon.ico',
+  icons: {
+    icon: [{ url: '/favicon.png', sizes: '32x32', type: 'image/png' }],
     apple: '/apple-touch-icon.png',
   },
   verification: {
@@ -74,6 +77,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="it" className={inter.variable}>
       <body>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <StructuredData />
         <a href="#main" className="sr-only">Salta al contenuto</a>
         <header className="site-header">
