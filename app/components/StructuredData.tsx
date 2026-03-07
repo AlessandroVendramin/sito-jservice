@@ -2,11 +2,11 @@ export function StructuredData() {
   const localBusiness = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': 'https://jservice.it/#organization', // Sostituisci con il tuo dominio
+    '@id': 'https://jservicejesolo.com/#organization', // Sostituisci con il tuo dominio
     name: 'JService S.R.L.',
     legalName: 'JService S.R.L.',
-    image: 'https://jservice.it/logo.svg', // Sostituisci con il tuo dominio
-    url: 'https://jservice.it', // Sostituisci con il tuo dominio
+    image: 'https://jservicejesolo.com/logo.svg', // Sostituisci con il tuo dominio
+    url: 'https://jservicejesolo.com', // Sostituisci con il tuo dominio
     telephone: '+39393668673',
     email: 'jservicesrljesolo@gmail.com',
     priceRange: '€€',
@@ -99,8 +99,8 @@ export function StructuredData() {
     '@type': 'Organization',
     name: 'JService S.R.L.',
     legalName: 'JService S.R.L.',
-    url: 'https://jservice.it', // Sostituisci con il tuo dominio
-    logo: 'https://jservice.it/logo.svg', // Sostituisci con il tuo dominio
+    url: 'https://jservicejesolo.com', // Sostituisci con il tuo dominio
+    logo: 'https://jservicejesolo.com/logo.svg', // Sostituisci con il tuo dominio
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+39393668673',

@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://jservice.it/sitemap.xml
+Sitemap: https://jservicejesolo.com/sitemap.xml
 
 # Disallow admin or private areas if you have them
 # Disallow: /admin/

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://jservice.it'; // Sostituisci con il tuo dominio
+  const baseUrl = 'https://jservicejesolo.com';
 
   return [
     {

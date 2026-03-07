@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://jservice.it'), // Sostituisci con il tuo dominio
+  metadataBase: new URL('https://jservicejesolo.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'it_IT',
-    url: 'https://jservice.it', // Sostituisci con il tuo dominio
+    url: 'https://jservicejesolo.com',
     siteName: 'JService',
     title: 'JService - Pulizie Professionali a Jesolo',
     description: 'Servizi di pulizia professionali a Jesolo e dintorni. Pulizia di cambio, pulizia di fondo, ripasso e servizi straordinari per appartamenti vacanze, uffici e attività commerciali.',
