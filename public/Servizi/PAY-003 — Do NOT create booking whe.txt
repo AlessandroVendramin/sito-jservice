@@ -1,0 +1,83 @@
+PAY-003 — Do NOT create booking when card checkout cannot start (pre-check fails)
+This covers the fix “don’t create orphan bookings when card payment can’t initialize”.
+Steps
+Use a company/vendor NOT ready for card (no Stripe account or capabilities inactive)
+As customer: start booking → choose card → click confirm/proceed
+You should see an error before redirecting to Stripe Checkout
+Expected
+No new booking row is created
+No payments row is created
+Verify
+Run “Latest bookings for a customer” before and after and confirm no new row appeared.
+REF-001 — Full refund (reverse transfer, return platform fee)
+Steps: Admin → refund full (amount blank), retain_platform_fee=false
+Expected: Stripe refund exists; bookings.refund_to_customer_cents = full amount; payments.status=refunded
+Verify: bookings/payments query + Stripe dashboard refund.
+REF-002 — Partial refund with platform fee retained
+Steps: Admin → refund partial (e.g. €5.00), retain_platform_fee=true
+Expected: refund_to_customer_cents increases; platform_fee_retained_cents set (≤ platform fee)
+Verify: bookings fields + Stripe refund list.
+DSP-001 — Dispute lifecycle reflected in DB
+Steps: trigger dispute open, then close (won/lost)
+Expected: bookings.in_dispute toggles; disputes row has status/timestamps
+Verify: your dispute queries + admin disputes UI.
+REC-001 — Reconciliation backfills fees/transfer linkage
+Steps: Admin → Maintenance → Run Reconcile
+Expected: processor_fee_cents, payout_cents, transfer_id filled; payout rows inserted
+Verify: booking fields + payouts table/UI.
+GATE-001 — Vendor gating UI (Pay now blocked until vendor ready)
+Steps: vendor not ready → open dashboard; customer tries booking/pay
+Expected: onboarding CTA/banner; Pay now disabled/hidden
+Verify: UI + account status API response.
+SEC-001 — Multi-tenant isolation
+Steps: login Vendor A → dashboard; ensure cannot access Vendor B data
+Expected: no cross-tenant bookings/payouts/disputes
+Verify: UI lists + any direct page access attempts.
+EDGE-001 — Zero amount booking
+Steps: booking with total_amount=0 → Pay now
+Expected: booking confirmed without Stripe session; receipt marker like FREE_0_EUR
+Verify: booking row + no Stripe payment created.
+CUR-001 — Currency mismatch guard
+Steps: vendor default currency ≠ EUR → try EUR booking
+Expected: error currency_mismatch_with_vendor, no session
+Verify: UI error + Stripe has no new session/PI.
+HOLD-001 / HOLD-UI / ACC-STATUS-API — Internal hold by dispute rate
+Steps: make dispute_rate_recent exceed limit → try pay
+Expected: vendor_on_hold, banner shows %
+Verify: stripe_account_status output + UI banner.
+WBK-001 — Webhook idempotency
+Steps: re-deliver same event id
+Expected: no duplicate state writes; no duplicate notifications
+Verify: stripe_events row exists once; no duplicate outbox rows for same dispute_id.
+DESC-001 — Statement descriptor
+Steps: complete a payment; check receipt/statement preview
+Expected: descriptor/suffix correct
+Verify: Stripe dashboard receipt.
+ADM-REF-UI / ADM-DSP-UI / ADM-PO-UI / ADM-MV / ADMIN-EXPORT-*
+Steps: open the relevant admin pages; export CSV; refresh MV
+Expected: tables populated; CSV downloads; MV refresh returns 200
+Verify: UI + (optional) SQL against MV.
+CRON-RECON / CRON-REFRESH
+Steps: call ops endpoints with cron_secret
+Expected: HTTP 200; logs show counts updated
+Verify: logs + DB fields updated.
+IDEM-CHK — Prevent duplicate checkout sessions per booking
+Steps: trigger checkout twice quickly for same booking
+Expected: same session id / only one created
+Verify: Stripe logs + your DB.
+XFER-LINK — Transfer linkage and payouts row
+Steps: wait for transfer.created webhook or run reconcile
+Expected: bookings.transfer_id set; payouts inserted
+Verify: bookings/payouts.
+NOTIF-DSP — Dispute notifications
+Steps: simulate dispute open/close
+Expected: in-app + outbox rows created (and emails sent when worker runs)
+Verify: notifications + notifications_outbox.
+RBAC-ADM / RBAC-FEE-BLOCK / RBAC-PLAN-BLOCK / ADMIN-FEE-CHANGE / ADMIN-PLAN-CHANGE / FEE-*
+Steps: try actions as vendor vs admin
+Expected: vendor blocked; admin succeeds; fee reflected in checkout application_fee_amount
+Verify: company row + Stripe charge/application fee.
+Two important notes for your current runs
+Email timing: notifications_outbox.status=pending stays pending until the worker runs. If you want “immediate” for testing, call the worker endpoint (with CRON_SECRET) or change your cron frequency.
+Pending status logic: your “happy path” is now paid + pending, then vendor approves → confirmed. That’s why PAY-001 was updated and PAY-002 exists.
+If you tell me which URL you use for the admin panel (or which ops endpoints you’re calling for refunds/reconcile), I can tailor the exact click-path/API calls for the admin-related cases too.

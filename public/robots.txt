@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jservice.it/sitemap.xml
+
+# Disallow admin or private areas if you have them
+# Disallow: /admin/
+# Disallow: /private/
