@@ -144,12 +144,10 @@ export default function HomePage() {
       {/* SECTION 5 — Social Proof */}
       <section className="section social-proof">
         <div className="container">
-          <p className="muted line-above">Scelto da hospitality, uffici e property manager moderni.</p>
-          <div className="logos">
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Richard Meier District</div>
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Campeggio Malibù</div>
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Campeggio Waikiki</div>
-            <div className="logo-pill" aria-label="Logo azienda (mock)">Jesolo Turismo</div>
+          <div className="social-proof-panel">
+            <p className="social-proof-copy">
+              Scelto da hospitality, uffici e property manager moderni.
+            </p>
           </div>
         </div>
       </section>
