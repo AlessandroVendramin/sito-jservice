@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
-import Link from 'next/link';
 import { ContactDrawer } from './components/ContactDrawer';
+import { SiteHeader } from './components/SiteHeader';
 import { StructuredData } from './components/StructuredData';
 
 const GA_MEASUREMENT_ID = 'G-TFRBS07470';
@@ -91,23 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
         <StructuredData />
         <a href="#main" className="sr-only">Salta al contenuto</a>
-        <header className="site-header">
-          <div className="container header-inner">
-            <Link href="/" className="brand" aria-label="Vai alla homepage">
-              <img src="/logo.svg" alt="JService" />
-              <span>JService</span>
-            </Link>
-            <nav aria-label="Navigazione principale">
-              <ul className="nav-list">
-                <li><Link href="/servizi" className="nav-link">Servizi</Link></li>
-                <li><Link href="/prezzi" className="nav-link">Prezzi</Link></li>
-                <li><Link href="/zone-servite" className="nav-link">Zone servite</Link></li>
-                <li><Link href="/chi-siamo" className="nav-link">Chi siamo</Link></li>
-                <li><Link href="/faq" className="nav-link">FAQ</Link></li>
-              </ul>
-            </nav>
-          </div>
-        </header>
+        <SiteHeader />
         <main id="main">{children}</main>
         <footer className="site-footer">
           <div className="container footer-inner">
