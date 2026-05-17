@@ -62,15 +62,15 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  manifest: '/site.webmanifest',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '32x32' },
       { url: '/favicon-48.png', sizes: '48x48', type: 'image/png' },
       { url: '/favicon-96.png', sizes: '96x96', type: 'image/png' },
       { url: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
     ],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
-    shortcut: '/favicon.ico',
+    shortcut: '/favicon-48.png',
   },
   verification: {
     // google: 'your-google-verification-code', // Aggiungi quando disponibile
@@ -82,6 +82,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it" className={inter.variable}>
+      <head>
+        <link rel="icon" href="https://jservicejesolo.com/favicon-48.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="https://jservicejesolo.com/favicon-96.png" type="image/png" sizes="96x96" />
+        <link rel="shortcut icon" href="https://jservicejesolo.com/favicon.ico" />
+      </head>
       <body>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
