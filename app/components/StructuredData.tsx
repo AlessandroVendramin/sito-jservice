@@ -5,7 +5,7 @@ export function StructuredData() {
     '@id': 'https://jservicejesolo.com/#organization', // Sostituisci con il tuo dominio
     name: 'JService S.R.L.',
     legalName: 'JService S.R.L.',
-    image: 'https://jservicejesolo.com/logo.svg', // Sostituisci con il tuo dominio
+    image: 'https://jservicejesolo.com/logo.png',
     url: 'https://jservicejesolo.com', // Sostituisci con il tuo dominio
     telephone: '+39393668673',
     email: 'jservicesrljesolo@gmail.com',
@@ -100,7 +100,7 @@ export function StructuredData() {
     name: 'JService S.R.L.',
     legalName: 'JService S.R.L.',
     url: 'https://jservicejesolo.com', // Sostituisci con il tuo dominio
-    logo: 'https://jservicejesolo.com/logo.svg', // Sostituisci con il tuo dominio
+    logo: 'https://jservicejesolo.com/logo.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+39393668673',

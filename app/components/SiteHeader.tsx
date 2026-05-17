@@ -55,10 +55,10 @@ export function SiteHeader() {
         <Link href="/" className="brand" aria-label="JService — vai alla homepage">
           <img
             className="brand-logo"
-            src="/logo.svg"
-            alt=""
-            width={140}
-            height={28}
+            src="/logo.png"
+            alt="JService — Pulizie professionali a Jesolo"
+            width={236}
+            height={87}
             decoding="async"
           />
         </Link>
