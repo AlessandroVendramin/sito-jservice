@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import type { CSSProperties, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 const CONTACT_EMAIL = 'jservicesrljesolo@gmail.com';
 
@@ -12,6 +12,39 @@ const SERVICE_OPTIONS = [
   'Servizi Straordinari',
   'Sanificazione',
   'Manutenzione Ordinaria',
+] as const;
+
+const HOME_SERVICES = [
+  {
+    icon: '🔄',
+    title: 'Pulizia di Cambio',
+    text: 'Pulizia completa tra un check-out e l\'altro per appartamenti e case vacanza: ambienti, bagni, cucina e controllo finale prima dell\'arrivo degli ospiti.',
+  },
+  {
+    icon: '🧹',
+    title: 'Pulizia di Fondo',
+    text: 'Intervento approfondito per appartamenti, uffici e locali commerciali: ideale a inizio stagione, dopo lavori o quando serve ripartire da una base davvero pulita.',
+  },
+  {
+    icon: '🏢',
+    title: 'Pulizia Uffici e Attività Commerciali',
+    text: 'Contratti ricorrenti su misura per uffici, negozi e studi professionali, con orari e frequenza concordati per mantenere gli spazi sempre presentabili.',
+  },
+  {
+    icon: '⚡',
+    title: 'Servizi Straordinari',
+    text: 'Pulizie post-cantiere, apertura e chiusura stagionale, eventi e situazioni particolari che richiedono un intervento dedicato e programmato.',
+  },
+  {
+    icon: '🧪',
+    title: 'Sanificazione',
+    text: 'Trattamenti di sanificazione certificati per strutture ricettive, uffici e ambienti ad alta frequentazione, nel rispetto delle normative di settore.',
+  },
+  {
+    icon: '🔧',
+    title: 'Manutenzione Ordinaria',
+    text: 'Servizi di manutenzione per immobili e proprietà: piccoli interventi coordinati con le pulizie per tenere gli spazi sempre in ordine durante tutto l\'anno.',
+  },
 ] as const;
 
 const LOCAL_BUSINESS_JSON_LD = {
@@ -31,16 +64,6 @@ const LOCAL_BUSINESS_JSON_LD = {
   areaServed: ['Jesolo', 'Cavallino-Treporti', 'Eraclea', 'San Donà di Piave'],
   priceRange: '€€',
   openingHours: 'Mo-Sa 07:00-19:00',
-};
-
-const formFieldStyle: CSSProperties = {
-  width: '100%',
-  padding: '10px 12px',
-  border: '1px solid var(--border-subtle)',
-  borderRadius: 8,
-  fontSize: 16,
-  fontFamily: 'inherit',
-  background: '#fff',
 };
 
 export const metadata: Metadata = {
@@ -69,22 +92,9 @@ export const metadata: Metadata = {
   },
 };
 
-function WhyUsIcon({ children }: { children: ReactNode }) {
+function WhyUsIconLarge({ children }: { children: ReactNode }) {
   return (
-    <span
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 44,
-        height: 44,
-        borderRadius: 10,
-        background: 'var(--primary-light)',
-        color: 'var(--primary)',
-        flexShrink: 0,
-      }}
-      aria-hidden="true"
-    >
+    <span className="home-why-icon" aria-hidden="true">
       {children}
     </span>
   );
@@ -92,13 +102,13 @@ function WhyUsIcon({ children }: { children: ReactNode }) {
 
 export default function HomePage() {
   return (
-    <>
+    <div className="home-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(LOCAL_BUSINESS_JSON_LD) }}
       />
 
-      <section className="section hero hero-with-photo">
+      <section className="section hero hero-with-photo home-hero">
         <div className="photo-layer" aria-hidden="true">
           <Image
             src="/assets-photos/pexels-liliana-drew-9462302.jpg"
@@ -120,69 +130,39 @@ export default function HomePage() {
             <a className="button button-primary" href="#" data-open-drawer="preventivo">
               Richiedi Preventivo Gratuito
             </a>
-            <Link className="button button-secondary" href="/servizi">
+            <Link className="button button-ghost" href="/servizi">
               Scopri i Servizi
             </Link>
           </div>
+          <p className="home-hero-trust">
+            ⭐ Oltre 200 clienti soddisfatti · 🛡️ Personale assicurato · ⏱️ Risposta entro 24h
+          </p>
         </div>
       </section>
 
       <section className="section" id="servizi" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div className="container">
-          <h2 style={{ textAlign: 'center', marginBottom: 12 }}>I Nostri Servizi di Pulizia</h2>
-          <p className="muted" style={{ textAlign: 'center', maxWidth: 640, margin: '0 auto 40px' }}>
+          <h2 className="home-section-head">I Nostri Servizi di Pulizia</h2>
+          <p className="muted home-section-lead">
             Soluzioni complete per privati, property manager e attività commerciali nel litorale veneziano.
           </p>
           <div className="grid-3">
-            <div className="card">
-              <h3>Pulizia di Cambio</h3>
-              <p className="muted">
-                Pulizia completa tra un check-out e l&apos;altro per appartamenti e case vacanza: ambienti,
-                bagni, cucina e controllo finale prima dell&apos;arrivo degli ospiti.
-              </p>
-            </div>
-            <div className="card">
-              <h3>Pulizia di Fondo</h3>
-              <p className="muted">
-                Intervento approfondito per appartamenti, uffici e locali commerciali: ideale a inizio
-                stagione, dopo lavori o quando serve ripartire da una base davvero pulita.
-              </p>
-            </div>
-            <div className="card">
-              <h3>Pulizia Uffici e Attività Commerciali</h3>
-              <p className="muted">
-                Contratti ricorrenti su misura per uffici, negozi e studi professionali, con orari e frequenza
-                concordati per mantenere gli spazi sempre presentabili.
-              </p>
-            </div>
-            <div className="card">
-              <h3>Servizi Straordinari</h3>
-              <p className="muted">
-                Pulizie post-cantiere, apertura e chiusura stagionale, eventi e situazioni particolari che
-                richiedono un intervento dedicato e programmato.
-              </p>
-            </div>
-            <div className="card">
-              <h3>Sanificazione</h3>
-              <p className="muted">
-                Trattamenti di sanificazione certificati per strutture ricettive, uffici e ambienti ad alta
-                frequentazione, nel rispetto delle normative di settore.
-              </p>
-            </div>
-            <div className="card">
-              <h3>Manutenzione Ordinaria</h3>
-              <p className="muted">
-                Servizi di manutenzione per immobili e proprietà: piccoli interventi coordinati con le pulizie
-                per tenere gli spazi sempre in ordine durante tutto l&apos;anno.
-              </p>
-            </div>
+            {HOME_SERVICES.map(({ icon, title, text }) => (
+              <article key={title} className="home-service-card">
+                <span className="home-service-icon" aria-hidden="true">
+                  {icon}
+                </span>
+                <h3>{title}</h3>
+                <p className="muted">{text}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="section motif-section" style={{ paddingTop: 72, paddingBottom: 72 }}>
         <div className="container">
-          <h2 style={{ textAlign: 'center', marginBottom: 20 }}>Le Zone che Serviamo</h2>
+          <h2 className="home-section-head">Le Zone che Serviamo</h2>
           <p
             className="muted"
             style={{
@@ -204,97 +184,81 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 72, paddingBottom: 72 }}>
+      <section className="section home-why-section" style={{ paddingTop: 72, paddingBottom: 72 }}>
         <div className="container">
-          <h2 style={{ textAlign: 'center', marginBottom: 40 }}>Perché Scegliere JService</h2>
-          <div
-            className="why-us-grid"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-              gap: 24,
-            }}
-          >
-            <div className="card" style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-              <WhyUsIcon>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <h2 className="home-section-head">Perché Scegliere JService</h2>
+          <div className="home-why-grid">
+            <div className="home-why-card">
+              <WhyUsIconLarge>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10" />
                   <path d="M12 6v6l4 2" />
                 </svg>
-              </WhyUsIcon>
-              <div>
-                <h3 style={{ marginBottom: 8, fontSize: 17 }}>Puntualità garantita</h3>
-                <p className="muted" style={{ margin: 0 }}>
-                  Rispettiamo gli orari concordati, anche in alta stagione, perché ogni cambio ospite ha tempi
-                  stretti.
-                </p>
-              </div>
+              </WhyUsIconLarge>
+              <h3>Puntualità garantita</h3>
+              <p className="muted">
+                Rispettiamo gli orari concordati, anche in alta stagione, perché ogni cambio ospite ha tempi
+                stretti.
+              </p>
             </div>
-            <div className="card" style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-              <WhyUsIcon>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="home-why-card">
+              <WhyUsIconLarge>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                   <circle cx="9" cy="7" r="4" />
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
-              </WhyUsIcon>
-              <div>
-                <h3 style={{ marginBottom: 8, fontSize: 17 }}>Personale formato e assicurato</h3>
-                <p className="muted" style={{ margin: 0 }}>
-                  Operatori qualificati, formati sulle procedure di pulizia professionale e coperti da
-                  assicurazione.
-                </p>
-              </div>
+              </WhyUsIconLarge>
+              <h3>Personale formato e assicurato</h3>
+              <p className="muted">
+                Operatori qualificati, formati sulle procedure di pulizia professionale e coperti da
+                assicurazione.
+              </p>
             </div>
-            <div className="card" style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-              <WhyUsIcon>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="home-why-card">
+              <WhyUsIconLarge>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
-              </WhyUsIcon>
-              <div>
-                <h3 style={{ marginBottom: 8, fontSize: 17 }}>Prodotti certificati eco-compatibili</h3>
-                <p className="muted" style={{ margin: 0 }}>
-                  Utilizziamo detergenti professionali certificati, efficaci e rispettosi di persone e
-                  ambienti.
-                </p>
-              </div>
+              </WhyUsIconLarge>
+              <h3>Prodotti certificati eco-compatibili</h3>
+              <p className="muted">
+                Utilizziamo detergenti professionali certificati, efficaci e rispettosi di persone e
+                ambienti.
+              </p>
             </div>
-            <div className="card" style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-              <WhyUsIcon>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <div className="home-why-card">
+              <WhyUsIconLarge>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                   <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
                 </svg>
-              </WhyUsIcon>
-              <div>
-                <h3 style={{ marginBottom: 8, fontSize: 17 }}>Preventivo gratuito entro 24 ore</h3>
-                <p className="muted" style={{ margin: 0 }}>
-                  Ricevi un preventivo chiaro e senza impegno entro un giorno lavorativo, via telefono, email o
-                  WhatsApp.
-                </p>
-              </div>
+              </WhyUsIconLarge>
+              <h3>Preventivo gratuito entro 24 ore</h3>
+              <p className="muted">
+                Ricevi un preventivo chiaro e senza impegno entro un giorno lavorativo, via telefono, email o
+                WhatsApp.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <section className="section secondary-cta" id="preventivo" style={{ paddingTop: 80, paddingBottom: 80 }}>
-        <div className="container" style={{ maxWidth: 560 }}>
-          <h2 style={{ textAlign: 'center', marginBottom: 12 }}>Richiedi un Preventivo Gratuito</h2>
+        <div className="container home-quote-wrap">
+          <h2 className="home-section-head">Richiedi un Preventivo Gratuito</h2>
           <p className="muted" style={{ textAlign: 'center', marginBottom: 28 }}>
             Compila il modulo: ti risponderemo entro 24 ore. Puoi anche chiamarci al{' '}
             <a href="tel:+39393668673">393 366 8673</a>.
           </p>
           <form
-            className="card"
+            className="home-quote-form"
             action={`mailto:${CONTACT_EMAIL}`}
             method="POST"
             encType="text/plain"
-            style={{ display: 'grid', gap: 16 }}
           >
             <div>
-              <label htmlFor="nome" style={{ display: 'block', marginBottom: 6, fontWeight: 500 }}>
+              <label htmlFor="nome" className="home-form-label">
                 Nome
               </label>
               <input
@@ -303,11 +267,11 @@ export default function HomePage() {
                 type="text"
                 required
                 autoComplete="name"
-                style={formFieldStyle}
+                className="home-form-field"
               />
             </div>
             <div>
-              <label htmlFor="telefono" style={{ display: 'block', marginBottom: 6, fontWeight: 500 }}>
+              <label htmlFor="telefono" className="home-form-label">
                 Telefono
               </label>
               <input
@@ -316,14 +280,14 @@ export default function HomePage() {
                 type="tel"
                 required
                 autoComplete="tel"
-                style={formFieldStyle}
+                className="home-form-field"
               />
             </div>
             <div>
-              <label htmlFor="servizio" style={{ display: 'block', marginBottom: 6, fontWeight: 500 }}>
+              <label htmlFor="servizio" className="home-form-label">
                 Tipo di servizio
               </label>
-              <select id="servizio" name="Tipo di servizio" required style={formFieldStyle} defaultValue="">
+              <select id="servizio" name="Tipo di servizio" required className="home-form-field" defaultValue="">
                 <option value="" disabled>
                   Seleziona un servizio
                 </option>
@@ -335,7 +299,7 @@ export default function HomePage() {
               </select>
             </div>
             <div>
-              <label htmlFor="messaggio" style={{ display: 'block', marginBottom: 6, fontWeight: 500 }}>
+              <label htmlFor="messaggio" className="home-form-label">
                 Messaggio
               </label>
               <textarea
@@ -343,32 +307,35 @@ export default function HomePage() {
                 name="Messaggio"
                 rows={4}
                 required
-                style={{ ...formFieldStyle, resize: 'vertical' }}
+                className="home-form-field"
               />
             </div>
-            <button type="submit" className="button button-primary" style={{ justifySelf: 'start' }}>
+            <button type="submit" className="button button-primary home-form-submit">
               Invia richiesta
             </button>
-            <p className="muted" style={{ margin: 0, fontSize: 13 }}>
+            <p className="home-form-note">
               Invio tramite il tuo client di posta. In alternativa usa il pulsante preventivo in alto o scrivici
               su <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </p>
+            <div className="home-halomora">
+              <p>
+                JService Jesolo è partner ufficiale di{' '}
+                <a href="https://halomora.com" target="_blank" rel="noopener noreferrer">
+                  halomora.com
+                </a>
+                : puoi prenotare online in modo guidato, con conferma rapida e scelta del servizio.
+              </p>
+              <a
+                className="button button-secondary home-halomora-btn"
+                href="#"
+                data-open-drawer="preventivo"
+              >
+                Prenota su Halomora
+              </a>
+            </div>
           </form>
         </div>
       </section>
-
-      <style>{`
-        @media (max-width: 900px) {
-          .why-us-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-        @media (max-width: 1100px) and (min-width: 901px) {
-          .why-us-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-          }
-        }
-      `}</style>
-    </>
+    </div>
   );
 }
