@@ -86,24 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="https://jservicejesolo.com/favicon-48.png" type="image/png" sizes="48x48" />
         <link rel="icon" href="https://jservicejesolo.com/favicon-96.png" type="image/png" sizes="96x96" />
         <link rel="shortcut icon" href="https://jservicejesolo.com/favicon.ico" />
-      </head>
-      <body>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
-        <div
-          aria-hidden="true"
-          dangerouslySetInnerHTML={{ __html: '<!-- Meta Pixel Code -->' }}
-        />
+        {/* Meta Pixel Code — https://developers.facebook.com/docs/meta-pixel/get-started/ */}
         <script
           id="meta-pixel"
           dangerouslySetInnerHTML={{
@@ -125,10 +108,21 @@ fbq('track', 'PageView');`,
               '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2232755924199897&ev=PageView&noscript=1" />',
           }}
         />
-        <div
-          aria-hidden="true"
-          dangerouslySetInnerHTML={{ __html: '<!-- End Meta Pixel Code -->' }}
+        {/* End Meta Pixel Code */}
+      </head>
+      <body>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
         />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <StructuredData />
         <a href="#main" className="sr-only">Salta al contenuto</a>
         <SiteHeader />
