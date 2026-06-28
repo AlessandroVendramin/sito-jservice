@@ -146,7 +146,7 @@ export function ContactDrawer() {
 
                 <div className="drawer-powered">
                   powered by{' '}
-                  <a href="https://halomora.com" target="_blank" rel="noopener noreferrer">
+                  <a href={HALOMORA_LANDING_URL} target="_blank" rel="noopener noreferrer">
                     halomora.com
                   </a>
                 </div>

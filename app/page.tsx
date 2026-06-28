@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
+import { HALOMORA_LANDING_URL } from './lib/booking-urls';
 
 const CONTACT_EMAIL = 'jservicesrljesolo@gmail.com';
 
@@ -320,7 +321,7 @@ export default function HomePage() {
             <div className="home-halomora">
               <p>
                 JService Jesolo è partner ufficiale di{' '}
-                <a href="https://halomora.com" target="_blank" rel="noopener noreferrer">
+                <a href={HALOMORA_LANDING_URL} target="_blank" rel="noopener noreferrer">
                   halomora.com
                 </a>
                 : puoi prenotare online in modo guidato, con conferma rapida e scelta del servizio.
